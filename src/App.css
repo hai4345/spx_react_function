@@ -1,184 +1,459 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-}
-
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
+/* ================================
+   NỀN TRANG
+================================ */
+html,
+body {
+  margin: 0;
   padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
   width: 100%;
+  min-height: 100%;
+  background-color: #f1f1f1;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Arial, sans-serif;
+  color: #222222;
+  overflow-x: hidden;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+* {
+  box-sizing: border-box;
+}
+
+.spx-page-bg {
+  background-color: #f1f1f1;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.spx-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f1f1f1;
+  padding: 0 15px;
+}
+
+/* ================================
+   KHUNG NỘI DUNG
+================================ */
+.spx-card {
+  background-color: #ffffff;
+  border-radius: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.banner-card {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.spx-banner-img {
+  width: 960px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.content-card {
+  padding: 20px 80px 30px;
+}
+
+/* ================================
+   TIÊU ĐỀ VÀ VĂN BẢN
+================================ */
+.spx-main-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: normal;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  color: #000000;
+}
+
+.spx-text {
+  font-size: 14px;
+  line-height: 1.57;
+  margin-bottom: 12px;
+}
+
+.spx-section-heading {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-bottom: 12px;
+}
+
+/* ================================
+   BẢNG KÊNH BÁO CÁO
+================================ */
+.spx-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.spx-table th,
+.spx-table td {
+  border: 1px solid #000000;
+  padding: 10px;
+  font-size: 14px;
+  vertical-align: top;
+  line-height: 1.38;
+}
+
+.spx-table th {
+  background-color: #434343;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+}
+
+.spx-table a {
+  color: #1155cc;
+  text-decoration: underline;
+}
+
+/* ================================
+   DANH SÁCH VÀ NGUYÊN TẮC
+================================ */
+.spx-list {
+  padding-left: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.38;
+}
+
+.spx-list li {
+  margin-bottom: 8px;
+}
+
+.text-red {
+  color: #ff0000;
+}
+
+.spx-principles p {
+  font-size: 14px;
+  line-height: 1.38;
+  margin-bottom: 10px;
+}
+
+.spx-divider {
+  border: none;
+  border-top: 1px solid #dfdfdf;
+  margin: 35px 0;
+}
+
+/* ================================
+   FORM NHẬP THÔNG TIN
+================================ */
+.spx-form-header {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 35px;
+  margin-bottom: 25px;
+  color: #000000;
+}
+
+.spx-form-group {
+  margin-bottom: 24px;
+  padding: 0 40px;
+}
+
+.spx-label {
+  display: block;
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom: 8px;
+  color: #000000;
+  line-height: 1.5;
+}
+
+.spx-label.required::before {
+  content: "* ";
+  color: #ff4d4f;
+}
+
+.spx-input {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  background-color: #ffffff;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.spx-input:focus {
+  border-color: #1677ff;
+  box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+}
+
+.spx-input::placeholder {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+
+.spx-subtext {
+  font-size: 13px;
+  color: #888888;
+  line-height: 1.5;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+/* ================================
+   CHÍNH SÁCH BẢO MẬT
+================================ */
+.spx-policy-header {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.policy-intro {
+  font-weight: normal;
+}
+
+/* Hàng checkbox và nội dung */
+.spx-checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 12px;
+  width: 100%;
+}
+
+/* Checkbox chưa tích */
+.spx-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: block;
+  flex: 0 0 32px;
+
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  margin: 4px 0 0;
+  padding: 0;
+
+  background-color: #ffffff;
+  border: 2px solid #d6d6d6;
+  border-radius: 8px;
+
+  cursor: pointer;
+  position: relative;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Hover: viền xanh, nền xanh nhạt */
+.spx-checkbox:hover {
+  border-color: #00a650;
+  background-color: #f0fff6;
+  box-shadow: 0 0 0 3px rgba(0, 166, 80, 0.1);
+}
+
+/* Checkbox đã tích */
+.spx-checkbox:checked {
+  background-color: #00a650;
+  border-color: #00a650;
+}
+
+/* Dấu tích màu trắng */
+.spx-checkbox:checked::after {
+  content: "";
+  position: absolute;
+
+  left: 9px;
+  top: 4px;
+
+  width: 8px;
+  height: 14px;
+
+  border: solid #ffffff;
+  border-width: 0 3px 3px 0;
+
+  transform: rotate(45deg);
+}
+
+/* Hiệu ứng khi dùng bàn phím */
+.spx-checkbox:focus-visible {
+  outline: 3px solid rgba(0, 166, 80, 0.25);
+  outline-offset: 3px;
+}
+
+/* Nội dung điều khoản */
+.spx-checkbox-label {
+  flex: 1;
+  min-width: 0;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.5;
+  color: #000000;
+  cursor: pointer;
+}
+
+/* Thông báo lỗi ngay dưới checkbox */
+.spx-policy-error {
+  display: block;
+  margin: 8px 0 12px;
+  color: #ff4d4f;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* ================================
+   NÚT THAO TÁC
+================================ */
+.spx-action-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 35px;
+  padding: 0 40px 30px;
+}
+
+.spx-btn {
+  min-height: 40px;
+  padding: 0 24px;
+  font-family: inherit;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn-reset {
+  background-color: #ffffff;
+  color: #ff4d4f;
+  border: 1px solid #ff4d4f;
+}
+
+.btn-reset:hover {
+  background-color: #fff1f0;
+}
+
+.btn-submit {
+  background-color: #f05323;
+  color: #ffffff;
+  border: 1px solid #f05323;
+  font-weight: bold;
+}
+
+.btn-submit:hover {
+  background-color: #d94215;
+  border-color: #d94215;
+}
+
+/* ================================
+   RESPONSIVE TABLET
+================================ */
+@media (max-width: 768px) {
+  .content-card {
+    padding: 20px 16px 24px;
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
+  .spx-main-title {
+    font-size: 24px;
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+
+  .spx-form-group {
+    padding: 0 8px;
+  }
+
+  .spx-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .spx-action-buttons {
+    padding: 0 8px 24px;
+  }
+
+  .spx-checkbox-label {
+    font-size: 15px;
+  }
+}
+
+/* ================================
+   RESPONSIVE MOBILE
+================================ */
+@media (max-width: 576px) {
+  .spx-container {
+    padding: 0;
+  }
+
+  .content-card {
+    padding: 16px 12px 24px;
+  }
+
+  .spx-main-title {
+    font-size: 21px;
+  }
+
+  .spx-form-header {
+    font-size: 20px;
+  }
+
+  .spx-checkbox {
+    flex-basis: 26px;
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    border-radius: 6px;
+  }
+
+  .spx-checkbox:checked::after {
+    left: 7px;
+    top: 3px;
+    width: 6px;
+    height: 11px;
+    border-width: 0 2.5px 2.5px 0;
+  }
+
+  .spx-checkbox-container {
+    gap: 12px;
+  }
+
+  .spx-checkbox-label {
+    font-size: 14px;
+  }
+
+  .spx-policy-error {
+    font-size: 14px;
+  }
+
+  .spx-action-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 8px 24px;
+  }
+
+  .spx-btn {
+    width: 100%;
   }
 }
