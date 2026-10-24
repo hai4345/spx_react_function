@@ -1,456 +1,505 @@
-
-/* ================================
-   NỀN TRANG
-================================ */
-html,
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100%;
-  background-color: #f1f1f1;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Arial, sans-serif;
-  color: #222222;
-  overflow-x: hidden;
-}
+/* =========================================
+   1. THIẾT LẬP NỀN TOÀN TRANG
+========================================= */
 
 * {
   box-sizing: border-box;
 }
 
-.spx-page-bg {
-  background-color: #f1f1f1;
+html,
+body,
+#root {
   width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
+  min-height: 100%;
+  margin: 0;
   padding: 0;
 }
 
+html,
+body {
+  background-color: #f1f1f1;
+  color: #000;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* =========================================
+   2. KHUNG TRANG
+========================================= */
+
+.spx-page-bg {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+}
+
+/* SỬA: JSX dùng "spx-container" nhưng CSS cũ chỉ có ".spx-tile-imge" */
 .spx-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 960px;
   margin: 0 auto;
-  background-color: #f1f1f1;
-  padding: 0 15px;
+  padding: 0;
+  background-color: #fff;
+  overflow: hidden;
 }
 
-/* ================================
-   KHUNG NỘI DUNG
-================================ */
-.spx-card {
-  background-color: #ffffff;
-  border-radius: 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  margin-bottom: 0;
+.spx-body {
   width: 100%;
+  background-color: #fff;
 }
+
+.spx-card {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+/* =========================================
+   3. BANNER (960 x 220px)
+========================================= */
 
 .banner-card {
-  text-align: center;
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
 }
 
 .spx-banner-img {
-  width: 960px;
-  max-width: 100%;
-  height: auto;
   display: block;
-  object-fit: contain;
+  width: 100%;
+  max-width: 960px;
+  height: auto;
+  aspect-ratio: 48 / 11;
+  object-fit: fill;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
 }
+
+/* =========================================
+   4. KHUNG NỘI DUNG HƯỚNG DẪN
+========================================= */
 
 .content-card {
-  padding: 20px 80px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 10px 60px 20px 80px;
+
+  background-color: #fff;
 }
 
-/* ================================
-   TIÊU ĐỀ VÀ VĂN BẢN
-================================ */
+/* =========================================
+   5. TIÊU ĐỀ CHÍNH
+========================================= */
+
 .spx-main-title {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 50px;
+  margin: 0 0 10px;
+  padding: 0;
+
+  color: #000;
+  font-family: Shopee, Arial, sans-serif;
   font-size: 30px;
-  font-weight: normal;
-  margin-top: 10px;
-  margin-bottom: 25px;
-  color: #000000;
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+  text-align: center;
+
+  overflow-wrap: break-word;
 }
 
+/* =========================================
+   6. VĂN BẢN HƯỚNG DẪN
+========================================= */
+
+.spx-text,
+.spx-section-heading,
+.spx-list li,
+.spx-principles p {
+  color: #000;
+  font-family: Arial, sans-serif;
+  font-size: 14.67px;
+  line-height: 1.38;
+  overflow-wrap: break-word;
+}
+
+/* SỬA: thiếu dấu chấm "." */
 .spx-text {
-  font-size: 14px;
-  line-height: 1.57;
-  margin-bottom: 12px;
+  margin: 0 0 1em;
+  padding: 0;
+  font-weight: 400;
 }
 
 .spx-section-heading {
-  font-size: 14px;
-  font-weight: bold;
-  margin-top: 25px;
-  margin-bottom: 12px;
+  margin: 1.38em 0 0.5em;
+  padding: 0;
+  font-weight: 700;
 }
 
-/* ================================
-   BẢNG KÊNH BÁO CÁO
-================================ */
+.spx-section-heading--wide {
+  margin-top: 2.76em;
+}
+
+.text-red {
+  color: #ff0000;
+  font-weight: 700;
+}
+
+/* =========================================
+   7. BẢNG HƯỚNG DẪN
+========================================= */
+
 .spx-table {
-  width: 100%;
+  width: 624px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+
+  border: none;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  border-spacing: 0;
+  table-layout: fixed;
+
+  background-color: #fff;
+  color: #000;
+  font-family: Arial, sans-serif;
+  font-size: 14.67px;
+  line-height: 1.38;
 }
 
 .spx-table th,
 .spx-table td {
-  border: 1px solid #000000;
-  padding: 10px;
-  font-size: 14px;
-  vertical-align: top;
+  padding: 6.67px;
+  border: 1px solid #000;
+
+  font-family: Arial, sans-serif;
+  font-size: 14.67px;
   line-height: 1.38;
+  font-weight: 400;
+  text-align: left;
+  vertical-align: top;
+
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .spx-table th {
   background-color: #434343;
-  color: #ffffff;
-  font-weight: bold;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.2;
   text-align: center;
 }
 
 .spx-table a {
   color: #1155cc;
   text-decoration: underline;
+  overflow-wrap: anywhere;
 }
 
-/* ================================
-   DANH SÁCH VÀ NGUYÊN TẮC
-================================ */
+/* =========================================
+   8. DANH SÁCH VÀ NGUYÊN TẮC CHUNG
+========================================= */
+
 .spx-list {
-  padding-left: 20px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  line-height: 1.38;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .spx-list li {
-  margin-bottom: 8px;
+  margin: 0 0 6px;
+  padding: 0;
+  font-weight: 400;
 }
 
-.text-red {
-  color: #ff0000;
+.spx-principles {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .spx-principles p {
-  font-size: 14px;
-  line-height: 1.38;
-  margin-bottom: 10px;
+  margin: 0 0 8px;
+  padding: 0;
 }
 
 .spx-divider {
-  border: none;
+  width: 100%;
+  height: 1px;
+  margin: 10px 0 5px;
+  padding: 0;
+  border: 0;
   border-top: 1px solid #dfdfdf;
-  margin: 35px 0;
 }
 
-/* ================================
-   FORM NHẬP THÔNG TIN
-================================ */
+/* =========================================
+   9. TIÊU ĐỀ BIỂU MẪU
+========================================= */
+
 .spx-form-header {
-  text-align: center;
+  width: 100%;
+  margin: 50px 0 10px;
+  padding: 0;
+
+  color: #000;
   font-size: 24px;
-  font-weight: bold;
-  margin-top: 35px;
-  margin-bottom: 25px;
-  color: #000000;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* =========================================
+   10. FORM NHẬP LIỆU (bản cũ thiếu toàn bộ phần này)
+========================================= */
+
+.spx-form-container {
+  width: 100%;
+  padding: 0 0 40px;
+  background-color: #fff;
+}
+
+.spx-container form {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
 }
 
 .spx-form-group {
-  margin-bottom: 24px;
-  padding: 0 40px;
+  width: 100%;
+  margin: 0 0 16px;
+  padding: 30px 90px 0;
+
+  color: #000;
+  font-size: 14px;
 }
 
 .spx-label {
   display: block;
+  margin: 0 0 10px;
+  color: #000;
   font-size: 14px;
-  font-weight: normal;
-  margin-bottom: 8px;
-  color: #000000;
-  line-height: 1.5;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
-.spx-label.required::before {
-  content: "* ";
-  color: #ff4d4f;
+.spx-label.required::after {
+  content: " *";
+  color: #ee4d2d;
+}
+
+.policy-intro {
+  font-weight: 400;
 }
 
 .spx-input {
   display: block;
   width: 100%;
-  min-height: 40px;
+  height: 40px;
   padding: 8px 12px;
+
+  background-color: #fff;
+  color: #000;
+  font-family: Arial, sans-serif;
   font-size: 14px;
-  font-family: inherit;
-  border: 1px solid #d9d9d9;
+
+  border: 1px solid #c4c4c4;
   border-radius: 4px;
-  background-color: #ffffff;
   outline: none;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .spx-input:focus {
-  border-color: #1677ff;
-  box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+  border-color: #ee4d2d;
+  box-shadow: 0 0 0 2px rgba(238, 77, 45, 0.15);
 }
 
 .spx-input::placeholder {
-  color: rgba(0, 0, 0, 0.45);
-  font-size: 14px;
+  color: #9a9a9a;
 }
 
 .spx-subtext {
+  margin: 12px 0 0;
+  color: #666;
   font-size: 13px;
-  color: #888888;
   line-height: 1.5;
-  margin-top: 8px;
-  margin-bottom: 0;
 }
 
-/* ================================
-   CHÍNH SÁCH BẢO MẬT
-================================ */
+/* =========================================
+   11. CHÍNH SÁCH BẢO MẬT
+========================================= */
+
 .spx-policy-header {
-  text-align: center;
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 30px;
-  margin-bottom: 15px;
+  width: 100%;
+  margin: 40px 0 0;
+  padding: 0 90px;
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: left;
 }
 
-.policy-intro {
-  font-weight: normal;
-}
-
-/* Hàng checkbox và nội dung */
 .spx-checkbox-container {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
-  margin-top: 12px;
-  width: 100%;
+  gap: 10px;
 }
 
-/* Checkbox chưa tích */
 .spx-checkbox {
-  appearance: none;
-  -webkit-appearance: none;
-
-  display: block;
-  flex: 0 0 32px;
-
-  width: 32px;
-  height: 32px;
-  min-width: 32px;
-  margin: 4px 0 0;
-  padding: 0;
-
-  background-color: #ffffff;
-  border: 2px solid #d6d6d6;
-  border-radius: 8px;
-
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
   cursor: pointer;
-  position: relative;
-
-  transition:
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    box-shadow 0.2s ease;
+  accent-color: #ee4d2d;
 }
 
-/* Hover: viền xanh, nền xanh nhạt */
-.spx-checkbox:hover {
-  border-color: #00a650;
-  background-color: #f0fff6;
-  box-shadow: 0 0 0 3px rgba(0, 166, 80, 0.1);
-}
-
-/* Checkbox đã tích */
-.spx-checkbox:checked {
-  background-color: #00a650;
-  border-color: #00a650;
-}
-
-/* Dấu tích màu trắng */
-.spx-checkbox:checked::after {
-  content: "";
-  position: absolute;
-
-  left: 9px;
-  top: 4px;
-
-  width: 8px;
-  height: 14px;
-
-  border: solid #ffffff;
-  border-width: 0 3px 3px 0;
-
-  transform: rotate(45deg);
-}
-
-/* Hiệu ứng khi dùng bàn phím */
-.spx-checkbox:focus-visible {
-  outline: 3px solid rgba(0, 166, 80, 0.25);
-  outline-offset: 3px;
-}
-
-/* Nội dung điều khoản */
 .spx-checkbox-label {
-  flex: 1;
-  min-width: 0;
-  font-size: 16px;
-  font-weight: normal;
+  font-size: 14px;
   line-height: 1.5;
-  color: #000000;
   cursor: pointer;
 }
 
-/* Thông báo lỗi ngay dưới checkbox */
 .spx-policy-error {
-  display: block;
-  margin: 8px 0 12px;
-  color: #ff4d4f;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5;
+  margin: 8px 0 0;
+  color: #d93025;
+  font-size: 13px;
 }
 
-/* ================================
-   NÚT THAO TÁC
-================================ */
+/* =========================================
+   12. NÚT THAO TÁC
+========================================= */
+
 .spx-action-buttons {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: 16px;
-  margin-top: 35px;
-  padding: 0 40px 30px;
+  padding: 20px 90px 0;
 }
 
 .spx-btn {
-  min-height: 40px;
-  padding: 0 24px;
-  font-family: inherit;
-  font-size: 14px;
+  min-width: 160px;
+  padding: 12px 24px;
+  border: 1px solid transparent;
   border-radius: 4px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease;
+  transition: background-color 0.2s, opacity 0.2s;
 }
 
 .btn-reset {
-  background-color: #ffffff;
-  color: #ff4d4f;
-  border: 1px solid #ff4d4f;
+  background-color: #fff;
+  border-color: #c4c4c4;
+  color: #333;
 }
 
 .btn-reset:hover {
-  background-color: #fff1f0;
+  background-color: #f5f5f5;
 }
 
 .btn-submit {
-  background-color: #f05323;
-  color: #ffffff;
-  border: 1px solid #f05323;
-  font-weight: bold;
+  background-color: #ee4d2d;
+  color: #fff;
 }
 
 .btn-submit:hover {
-  background-color: #d94215;
-  border-color: #d94215;
+  background-color: #d73f21;
 }
 
-/* ================================
-   RESPONSIVE TABLET
-================================ */
+/* =========================================
+   13. RESPONSIVE
+========================================= */
+
 @media (max-width: 768px) {
   .content-card {
-    padding: 20px 16px 24px;
+    padding: 16px;
   }
 
   .spx-main-title {
-    font-size: 24px;
+    font-size: 23px;
+    line-height: 1.4;
   }
 
-  .spx-form-group {
-    padding: 0 8px;
+  .spx-text,
+  .spx-section-heading,
+  .spx-list li,
+  .spx-principles p {
+    font-size: 14px;
   }
 
   .spx-table {
-    display: block;
-    overflow-x: auto;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
   }
 
-  .spx-action-buttons {
-    padding: 0 8px 24px;
-  }
-
-  .spx-checkbox-label {
-    font-size: 15px;
-  }
-}
-
-/* ================================
-   RESPONSIVE MOBILE
-================================ */
-@media (max-width: 576px) {
-  .spx-container {
-    padding: 0;
-  }
-
-  .content-card {
-    padding: 16px 12px 24px;
-  }
-
-  .spx-main-title {
-    font-size: 21px;
+  .spx-table th,
+  .spx-table td {
+    padding: 5px;
+    font-size: 12px;
+    line-height: 1.35;
   }
 
   .spx-form-header {
+    margin: 36px 0 10px;
+    font-size: 21px;
+  }
+
+  .spx-form-group {
+    padding: 20px 16px 0;
+  }
+
+  .spx-policy-header,
+  .spx-action-buttons {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .content-card {
+    padding: 12px;
+  }
+
+  .spx-main-title {
     font-size: 20px;
   }
 
-  .spx-checkbox {
-    flex-basis: 26px;
-    width: 26px;
-    height: 26px;
-    min-width: 26px;
-    border-radius: 6px;
+  .spx-table th,
+  .spx-table td {
+    padding: 4px;
+    font-size: 11px;
   }
 
-  .spx-checkbox:checked::after {
-    left: 7px;
-    top: 3px;
-    width: 6px;
-    height: 11px;
-    border-width: 0 2.5px 2.5px 0;
-  }
-
-  .spx-checkbox-container {
-    gap: 12px;
-  }
-
-  .spx-checkbox-label {
-    font-size: 14px;
-  }
-
-  .spx-policy-error {
-    font-size: 14px;
+  .spx-form-group {
+    padding-right: 8px;
+    padding-left: 8px;
   }
 
   .spx-action-buttons {
     flex-direction: column;
-    align-items: stretch;
-    padding: 0 8px 24px;
   }
 
   .spx-btn {
