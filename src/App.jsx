@@ -1,6 +1,15 @@
 import { useState } from "react";
 import "./App.css";
+import { Select } from "antd";
 
+const normalizeSearchText = (text = "") => {
+  return String(text)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .trim();
+};
 export default function SPXReportForm() {
   const initialFormData = {
     workingRegion: "",
@@ -58,7 +67,6 @@ export default function SPXReportForm() {
             className="spx-banner-img"
           />
         </div>
-
         {/* NỘI DUNG HƯỚNG DẪN */}
         <div className="spx-body">
           <div className="spx-card content-card">
@@ -179,28 +187,28 @@ export default function SPXReportForm() {
 
             <ul className="spx-list">
               <li>
-                <strong>Mô tả chi tiết, rõ ràng</strong> về sự vụ, bao gồm: thời
-                gian, địa điểm cụ thể xảy ra sự vụ, các cá nhân liên quan và vai
-                trò của họ.
+                <strong> - Mô tả chi tiết, rõ ràng</strong> về sự vụ, bao gồm:
+                thời gian, địa điểm cụ thể xảy ra sự vụ, các cá nhân liên quan
+                và vai trò của họ.
               </li>
               <li>
-                Ghi rõ họ tên, email, bộ phận của người bị tố cáo/ các cá nhân
+                - Ghi rõ họ tên, email, bộ phận của người bị tố cáo/ các cá nhân
                 liên quan đến sự vụ.
               </li>
               <li>
-                Đính kèm <strong className="text-red">BẰNG CHỨNG</strong> (đây
+                - Đính kèm <strong className="text-red">BẰNG CHỨNG</strong> (đây
                 là cơ sở <strong>QUAN TRỌNG</strong> để bộ phận chuyên trách
                 đánh giá xử lý điều tra).
               </li>
               <li>
-                Khuyến khích người tố cáo để lại{" "}
+                - Khuyến khích người tố cáo để lại{" "}
                 <strong>thông tin liên hệ</strong> để team chuyên trách trao đổi
                 nếu cần thêm thông tin.
               </li>
               <li>
-                <strong className="text-red">KHÔNG NÊN</strong>: cung cấp thông
-                tin mơ hồ, suy đoán cảm tính hoặc không đề cập danh tính người
-                bị tố cáo/người vi phạm.
+                <strong className="text-red"> - KHÔNG NÊN</strong>: cung cấp
+                thông tin mơ hồ, suy đoán cảm tính hoặc không đề cập danh tính
+                người bị tố cáo/người vi phạm.
               </li>
             </ul>
 
@@ -238,13 +246,12 @@ export default function SPXReportForm() {
             <hr className="spx-divider" />
           </div>
         </div>
-
         {/* FORM NHẬP THÔNG TIN */}
         <div className="spx-form-container">
           <form onSubmit={handleSubmit}>
             <h2 className="spx-form-header">THÔNG TIN CƠ BẢN</h2>
 
-            <div className="spx-form-group">
+            {/* <div className="spx-form-group">
               <label htmlFor="workingRegion" className="spx-label required">
                 Bạn đang làm việc tại khu vực nào?
               </label>
@@ -264,9 +271,41 @@ export default function SPXReportForm() {
                 <option value="kho_soc">Hệ thống Kho / SOC</option>
                 <option value="van_phong">Khối Văn Phòng (HO)</option>
               </select>
+            </div> */}
+            <div className="spx-form-group">
+              <label htmlFor="workingRegion" className="spx-label required">
+                Bạn đang làm việc tại khu vực nào?
+              </label>
+
+              <Select
+                id="workingRegion"
+                className="spx-select"
+                value={formData.workingRegion || undefined}
+                onChange={(value) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    workingRegion: value,
+                  }))
+                }
+                showSearch={{
+                  optionFilterProp: "label",
+                  filterOption: (input, option) =>
+                    normalizeSearchText(option?.label ?? "").includes(
+                      normalizeSearchText(input),
+                    ),
+                }}
+                options={[
+                  { value: "ha_noi", label: "Hà Nội" },
+                  { value: "ho_chi_minh", label: "Hồ Chi Minh" },
+                  { value: "mien_bac", label: "Miền Bắc" },
+                  { value: "mien_trung", label: "Miền Trung" },
+                  { value: "mien_nam", label: "Miền Nam" },
+                ]}
+                style={{ width: "100%" }}
+              />
             </div>
 
-            <div className="spx-form-group">
+            {/* <div className="spx-form-group">
               <label htmlFor="employeeGroup" className="spx-label required">
                 Bạn thuộc nhóm nhân viên nào dưới đây?
               </label>
@@ -285,6 +324,49 @@ export default function SPXReportForm() {
                 <option value="nha_thau">Nhà thầu / Đối tác</option>
                 <option value="khac">Khác</option>
               </select>
+            </div> */}
+            <div className="spx-form-group">
+              <label htmlFor="employeeGroup" className="spx-label required">
+                Bạn thuộc nhóm nhân viên nào dưới đây?
+              </label>
+
+              <Select
+                id="employeeGroup"
+                className="spx-select"
+                value={formData.employeeGroup || undefined}
+                onChange={(value) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    employeeGroup: value,
+                  }))
+                }
+                showSearch={{
+                  optionFilterProp: "label",
+                  filterOption: (input, option) =>
+                    normalizeSearchText(option?.label ?? "").includes(
+                      normalizeSearchText(input),
+                    ),
+                }}
+                options={[
+                  {
+                    value: "tai_xe_giao_nhan",
+                    label: "Tài xế giao nhận hàng (Rider)",
+                  },
+                  {
+                    value: "tai_xe_tai",
+                    label: "Tài xế xe tải (Diver)",
+                  },
+                  {
+                    value: "nhan_vien_van_hanh",
+                    label: "Nhân viên vận hành (FTE Hub/SOC/LH)",
+                  },
+                  {
+                    value: "nhan_vien_thoi_vu",
+                    label: "Nhân viên thời vụ (BPO/OS)",
+                  },
+                ]}
+                style={{ width: "100%" }}
+              />
             </div>
 
             <div className="spx-form-group">
@@ -298,7 +380,7 @@ export default function SPXReportForm() {
                 name="hubSName"
                 value={formData.hubSName}
                 onChange={handleChange}
-                placeholder="Vui lòng điền tên gọi của Hub/SOC"
+                placeholder="Hướng dẫn: Vui lòng điền tối thiểu 04 ký tự tên gọi của Hub/SOC để hiện thị danh sách chọn"
                 className="spx-input"
                 minLength={4}
                 required
@@ -415,7 +497,8 @@ export default function SPXReportForm() {
               </button>
             </div>
           </form>
-        </div>Í
+        </div>
+        Í
       </div>
     </div>
   );

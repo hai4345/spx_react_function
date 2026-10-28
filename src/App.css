@@ -138,7 +138,7 @@ body {
   color: #000;
   font-family: Arial, sans-serif;
   font-size: 14.67px;
-  line-height: 1.38;
+  line-height: 1.30;
   overflow-wrap: break-word;
 }
 
@@ -227,8 +227,6 @@ body {
 }
 
 .spx-list li {
-  margin: 0 0 6px;
-  padding: 0;
   font-weight: 400;
 }
 
