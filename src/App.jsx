@@ -1,6 +1,12 @@
 import { useState } from "react";
 import "./App.css";
 import { Select, Input, Checkbox, Button } from "antd";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY,
+);
 
 const normalizeSearchText = (text = "") => {
   return String(text)
@@ -41,8 +47,18 @@ export default function SPXReportForm() {
     setShowPolicyError(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (
+      !formData.workingRegion ||
+      !formData.employeeGroup ||
+      !formData.hubSName.trim() ||
+      !formData.affectedEntity
+    ) {
+      alert("Vui lòng điền đầy đủ các trường bắt buộc.");
+      return;
+    }
 
     if (!formData.agreePolicy) {
       setShowPolicyError(true);
@@ -52,8 +68,24 @@ export default function SPXReportForm() {
 
     setShowPolicyError(false);
 
+    const { error } = await supabase.from("reports").insert([
+      {
+        working_region: formData.workingRegion,
+        employee_group: formData.employeeGroup,
+        hub_name: formData.hubSName,
+        affected_entity: formData.affectedEntity,
+        contact_info: formData.contactInfo || null,
+      },
+    ]);
+
+    if (error) {
+      console.error(error);
+      alert("Gửi thất bại, vui lòng thử lại.");
+      return;
+    }
     console.log("Dữ liệu tố cáo:", formData);
     alert("Báo cáo sự vụ của bạn đã được gửi thành công!");
+    handleReset();
   };
 
   return (
@@ -110,7 +142,7 @@ export default function SPXReportForm() {
                   <td>
                     Kênh{" "}
                     <a
-                      href="https://spx.vn/lp/spx-risk-form-bao-cao-an-danh/"
+                      href="https://spx-react-function.vercel.app/"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -496,7 +528,7 @@ export default function SPXReportForm() {
                 họ được giữ bí mật tuyệt đối.
               </p>
             </div>
-            
+
             <hr className="spx-divider" />
             {/* NÚT THAO TÁC */}
             <div className="spx-action-buttons">
