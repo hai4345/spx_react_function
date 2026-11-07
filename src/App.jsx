@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { Select } from "antd";
+import { Select, Input, Checkbox, Button } from "antd";
 
 const normalizeSearchText = (text = "") => {
   return String(text)
@@ -374,38 +374,54 @@ export default function SPXReportForm() {
                 Tên gọi đầy đủ của Hub/SOC hay khu vực nơi bạn làm việc
               </label>
 
-              <input
+              <Input
                 id="hubSName"
                 type="text"
                 name="hubSName"
                 value={formData.hubSName}
                 onChange={handleChange}
                 placeholder="Hướng dẫn: Vui lòng điền tối thiểu 04 ký tự tên gọi của Hub/SOC để hiện thị danh sách chọn"
-                className="spx-input"
-                minLength={4}
-                required
               />
             </div>
 
-            <h2 className="spx-form-header">KHIẾU NẠI/TỐ CÁO SỰ VỤ</h2>
+            <h2 className="spx-form-header2">KHIẾU NẠI/TỐ CÁO SỰ VỤ</h2>
 
             <div className="spx-form-group">
               <label htmlFor="affectedEntity" className="spx-label required">
                 Sự vụ này ảnh hưởng tới tổ chức/cá nhân nào?
               </label>
 
-              <select
+              <Select
                 id="affectedEntity"
-                name="affectedEntity"
-                value={formData.affectedEntity}
-                onChange={handleChange}
-                className="spx-input"
-                required
-              >
-                <option value="">Vui lòng chọn</option>
-                <option value="spx">Công ty SPX</option>
-                <option value="ca_nhan">Cá nhân</option>
-              </select>
+                className="spx-select"
+                placeholder="Công ty SPX/Cá nhân"
+                value={formData.affectedEntity || undefined}
+                onChange={(value) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    affectedEntity: value,
+                  }))
+                }
+                showSearch={{
+                  optionFilterProp: "label",
+                  filterOption: (input, option) =>
+                    normalizeSearchText(option?.label ?? "").includes(
+                      normalizeSearchText(input),
+                    ),
+                }}
+                options={[
+                  {
+                    value: "cong_ty_spx",
+                    label: "Công ty SPX",
+                  },
+                  {
+                    value: "ca_nhan",
+                    label: "Cá nhân",
+                  },
+                ]}
+                style={{ width: "100%" }}
+                aria-required="true"
+              />
             </div>
 
             <h2 className="spx-form-header">THÔNG TIN LIÊN HỆ</h2>
@@ -416,16 +432,14 @@ export default function SPXReportForm() {
                 thể liên hệ với bạn không?
               </label>
 
-              <input
+              <Input
                 id="contactInfo"
-                type="text"
                 name="contactInfo"
+                type="text"
                 value={formData.contactInfo}
                 onChange={handleChange}
-                placeholder="Vui lòng để lại số điện thoại, hoặc email tại đây"
-                className="spx-input"
+                placeholder="Hướng dẫn: Vui lòng điền tối thiểu 04 ký tự tên gọi của Hub/SOC"
               />
-
               <p className="spx-subtext">
                 Tất cả thông tin bạn cung cấp đều được bảo vệ một cách nghiêm
                 ngặt và bảo mật nhất. Công ty sẽ điều tra khách quan, công bằng,
@@ -433,6 +447,8 @@ export default function SPXReportForm() {
                 người cung cấp thông tin sẽ được bảo vệ chống lại bất kỳ sự trả
                 đũa nào, với danh tính của họ được giữ bí mật tuyệt đối.
               </p>
+
+              <hr className="spx-divider" />
             </div>
 
             {/* CHÍNH SÁCH BẢO MẬT */}
@@ -448,25 +464,23 @@ export default function SPXReportForm() {
               </p>
 
               <div className="spx-checkbox-container">
-                <input
-                  type="checkbox"
+                <Checkbox
                   id="agreePolicy"
                   name="agreePolicy"
                   checked={formData.agreePolicy}
                   onChange={handleChange}
-                  className="spx-checkbox"
                   aria-invalid={showPolicyError}
                   aria-describedby={
                     showPolicyError ? "policy-error" : undefined
                   }
-                />
-
-                <label htmlFor="agreePolicy" className="spx-checkbox-label">
-                  Tôi xác nhận rằng Tôi đã hiểu và đồng ý với Chính sách bảo mật
-                  của SPX Express và đồng ý toàn bộ cho công ty được tiến hành
-                  xử lý dữ liệu cá nhân của tôi phù hợp với các quy định trong
-                  Chính sách bảo mật của công ty.
-                </label>
+                >
+                  <span className="spx-checkbox-label">
+                    Tôi xác nhận rằng Tôi đã hiểu và đồng ý với Chính sách bảo
+                    mật của SPX Express và đồng ý toàn bộ cho công ty được tiến
+                    hành xử lý dữ liệu cá nhân của tôi phù hợp với các quy định
+                    trong Chính sách bảo mật của công ty.
+                  </span>
+                </Checkbox>
               </div>
 
               {showPolicyError && (
@@ -482,23 +496,30 @@ export default function SPXReportForm() {
                 họ được giữ bí mật tuyệt đối.
               </p>
             </div>
-
+            
+            <hr className="spx-divider" />
             {/* NÚT THAO TÁC */}
             <div className="spx-action-buttons">
-              <button
-                type="button"
+              <Button
+                htmlType="button"
+                size="large"
+                className="btn-reset"
                 onClick={handleReset}
-                className="spx-btn btn-reset"
               >
                 Xoá thông tin đã điền
-              </button>
-              <button type="submit" className="spx-btn btn-submit">
+              </Button>
+
+              <Button
+                type="primary"
+                htmlType="submit"
+                size="large"
+                className="btn-submit"
+              >
                 Gửi tố cáo
-              </button>
+              </Button>
             </div>
           </form>
         </div>
-        Í
       </div>
     </div>
   );

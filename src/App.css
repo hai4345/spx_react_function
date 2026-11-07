@@ -256,9 +256,28 @@ body {
 
 .spx-form-header {
   width: 100%;
-  margin: 50px 0 10px;
+  margin: 30px 0 10px;
   padding: 0;
-
+  color: #000;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+}
+.spx-form-header2{
+  width: 100%;
+  margin: 40px 0 10px;
+  padding: 0;
+  color: #000;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+}
+.spx-form-header3{
+  width: 100%;
+  margin: 40px 0 10px;
+  padding: 0;
   color: #000;
   font-size: 24px;
   font-weight: 400;
@@ -349,12 +368,11 @@ body {
 
 .spx-policy-header {
   width: 100%;
-  margin: 40px 0 0;
   padding: 0 90px;
   color: #000;
   font-size: 18px;
   font-weight: 700;
-  text-align: left;
+  text-align: center;
 }
 
 .spx-checkbox-container {
@@ -388,33 +406,28 @@ body {
    12. NÚT THAO TÁC
 ========================================= */
 
-.spx-action-buttons {
+ .spx-action-buttons {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
-  padding: 20px 90px 0;
+  padding: 10px 60px 0;
 }
 
-.spx-btn {
-  min-width: 160px;
-  padding: 12px 24px;
-  border: 1px solid transparent;
-  border-radius: 4px;
+.spx-action-buttons .ant-btn {
+  min-width: 200px;
+}
+
+.spx-action-buttons .btn-submit.ant-btn-primary:hover {
+  background-color: #d73211;
+}
+.spx-action-buttons .ant-btn {
+  border-radius: 15px;
   font-family: Arial, sans-serif;
   font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.2s, opacity 0.2s;
 }
 
 .btn-reset {
-  background-color: #fff;
-  border-color: #c4c4c4;
-  color: #333;
-}
-
-.btn-reset:hover {
-  background-color: #f5f5f5;
+  border-color: #ee4d2d;
+  color: #ee4d2d;
 }
 
 .btn-submit {
@@ -460,20 +473,15 @@ body {
     line-height: 1.35;
   }
 
-  .spx-form-header {
+  /* .spx-form-header {
     margin: 36px 0 10px;
     font-size: 21px;
-  }
+  } */
 
   .spx-form-group {
     padding: 20px 16px 0;
   }
 
-  .spx-policy-header,
-  .spx-action-buttons {
-    padding-right: 16px;
-    padding-left: 16px;
-  }
 }
 
 @media (max-width: 380px) {
@@ -494,10 +502,6 @@ body {
   .spx-form-group {
     padding-right: 8px;
     padding-left: 8px;
-  }
-
-  .spx-action-buttons {
-    flex-direction: column;
   }
 
   .spx-btn {
