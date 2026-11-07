@@ -122,7 +122,18 @@ export default function SPXReportForm() {
       handleReset();
     } catch (err) {
       console.error(err);
-      message.error("Gửi thất bại, vui lòng thử lại.");
+      const msg = err?.message || "";
+      if (msg.includes("RATE_LIMIT_CONTACT")) {
+        message.error(
+          "Thông tin liên hệ này đã gửi tối đa 5 báo cáo trong 24 giờ. Vui lòng thử lại sau.",
+        );
+      } else if (msg.includes("RATE_LIMIT_GLOBAL")) {
+        message.error(
+          "Hệ thống đang nhận quá nhiều báo cáo, vui lòng thử lại sau ít phút.",
+        );
+      } else {
+        message.error("Gửi thất bại, vui lòng thử lại.");
+      }
     } finally {
       setSubmitting(false);
     }
