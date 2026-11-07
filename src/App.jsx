@@ -1,12 +1,15 @@
 import { useState } from "react";
 import "./App.css";
-import { Select, Input, Checkbox, Button } from "antd";
+import { Select, Input, Checkbox, Button, Upload, message } from "antd";
 import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
   import.meta.env.VITE_SUPABASE_ANON_KEY,
 );
+
+const MAX_FILES = 5;
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB, khớp với giới hạn của bucket "evidence"
 
 const normalizeSearchText = (text = "") => {
   return String(text)
@@ -16,18 +19,22 @@ const normalizeSearchText = (text = "") => {
     .replace(/đ/g, "d")
     .trim();
 };
+
 export default function SPXReportForm() {
   const initialFormData = {
     workingRegion: "",
     employeeGroup: "",
     hubSName: "",
     affectedEntity: "",
+    incidentDescription: "",
     contactInfo: "",
     agreePolicy: false,
   };
 
   const [formData, setFormData] = useState(initialFormData);
+  const [fileList, setFileList] = useState([]);
   const [showPolicyError, setShowPolicyError] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -44,19 +51,26 @@ export default function SPXReportForm() {
 
   const handleReset = () => {
     setFormData({ ...initialFormData });
+    setFileList([]);
     setShowPolicyError(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Kiểm tra các trường bắt buộc
     if (
       !formData.workingRegion ||
       !formData.employeeGroup ||
       !formData.hubSName.trim() ||
       !formData.affectedEntity
     ) {
-      alert("Vui lòng điền đầy đủ các trường bắt buộc.");
+      message.error("Vui lòng điền đầy đủ các trường bắt buộc.");
+      return;
+    }
+
+    if (formData.incidentDescription.trim().length < 10) {
+      message.error("Vui lòng mô tả sự vụ (tối thiểu 10 ký tự).");
       return;
     }
 
@@ -67,25 +81,51 @@ export default function SPXReportForm() {
     }
 
     setShowPolicyError(false);
+    setSubmitting(true);
 
-    const { error } = await supabase.from("reports").insert([
-      {
-        working_region: formData.workingRegion,
-        employee_group: formData.employeeGroup,
-        hub_name: formData.hubSName,
-        affected_entity: formData.affectedEntity,
-        contact_info: formData.contactInfo || null,
-      },
-    ]);
+    try {
+      // 1. Tải bằng chứng lên Storage (bucket riêng tư "evidence")
+      const folder = crypto.randomUUID();
+      const evidencePaths = [];
 
-    if (error) {
-      console.error(error);
-      alert("Gửi thất bại, vui lòng thử lại.");
-      return;
+      for (let i = 0; i < fileList.length; i++) {
+        const file = fileList[i].originFileObj;
+        if (!file) continue;
+
+        const ext = (file.name.split(".").pop() || "bin").toLowerCase();
+        const path = `${folder}/${i + 1}.${ext}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from("evidence")
+          .upload(path, file, { contentType: file.type });
+
+        if (uploadError) throw uploadError;
+        evidencePaths.push(path);
+      }
+
+      // 2. Lưu báo cáo vào bảng reports
+      const { error } = await supabase.from("reports").insert([
+        {
+          working_region: formData.workingRegion,
+          employee_group: formData.employeeGroup,
+          hub_name: formData.hubSName.trim(),
+          affected_entity: formData.affectedEntity,
+          incident_description: formData.incidentDescription.trim(),
+          evidence_paths: evidencePaths,
+          contact_info: formData.contactInfo.trim() || null,
+        },
+      ]);
+
+      if (error) throw error;
+
+      message.success("Báo cáo sự vụ của bạn đã được gửi thành công!");
+      handleReset();
+    } catch (err) {
+      console.error(err);
+      message.error("Gửi thất bại, vui lòng thử lại.");
+    } finally {
+      setSubmitting(false);
     }
-    console.log("Dữ liệu tố cáo:", formData);
-    alert("Báo cáo sự vụ của bạn đã được gửi thành công!");
-    handleReset();
   };
 
   return (
@@ -283,27 +323,6 @@ export default function SPXReportForm() {
           <form onSubmit={handleSubmit}>
             <h2 className="spx-form-header">THÔNG TIN CƠ BẢN</h2>
 
-            {/* <div className="spx-form-group">
-              <label htmlFor="workingRegion" className="spx-label required">
-                Bạn đang làm việc tại khu vực nào?
-              </label>
-
-              <select
-                id="workingRegion"
-                name="workingRegion"
-                value={formData.workingRegion}
-                onChange={handleChange}
-                className="spx-input"
-                required
-              >
-                <option value="">Vui lòng chọn khu vực</option>
-                <option value="mien_bac">Miền Bắc</option>
-                <option value="mien_trung">Miền Trung</option>
-                <option value="mien_nam">Miền Nam</option>
-                <option value="kho_soc">Hệ thống Kho / SOC</option>
-                <option value="van_phong">Khối Văn Phòng (HO)</option>
-              </select>
-            </div> */}
             <div className="spx-form-group">
               <label htmlFor="workingRegion" className="spx-label required">
                 Bạn đang làm việc tại khu vực nào?
@@ -328,7 +347,7 @@ export default function SPXReportForm() {
                 }}
                 options={[
                   { value: "ha_noi", label: "Hà Nội" },
-                  { value: "ho_chi_minh", label: "Hồ Chi Minh" },
+                  { value: "ho_chi_minh", label: "Hồ Chí Minh" },
                   { value: "mien_bac", label: "Miền Bắc" },
                   { value: "mien_trung", label: "Miền Trung" },
                   { value: "mien_nam", label: "Miền Nam" },
@@ -337,26 +356,6 @@ export default function SPXReportForm() {
               />
             </div>
 
-            {/* <div className="spx-form-group">
-              <label htmlFor="employeeGroup" className="spx-label required">
-                Bạn thuộc nhóm nhân viên nào dưới đây?
-              </label>
-
-              <select
-                id="employeeGroup"
-                name="employeeGroup"
-                value={formData.employeeGroup}
-                onChange={handleChange}
-                className="spx-input"
-                required
-              >
-                <option value="">Vui lòng chọn nhóm nhân viên</option>
-                <option value="noi_bo">Nhân viên nội bộ SPX</option>
-                <option value="bpo_os">Lao động thuê ngoài (BPO / OS)</option>
-                <option value="nha_thau">Nhà thầu / Đối tác</option>
-                <option value="khac">Khác</option>
-              </select>
-            </div> */}
             <div className="spx-form-group">
               <label htmlFor="employeeGroup" className="spx-label required">
                 Bạn thuộc nhóm nhân viên nào dưới đây?
@@ -386,7 +385,7 @@ export default function SPXReportForm() {
                   },
                   {
                     value: "tai_xe_tai",
-                    label: "Tài xế xe tải (Diver)",
+                    label: "Tài xế xe tải (Driver)",
                   },
                   {
                     value: "nhan_vien_van_hanh",
@@ -412,6 +411,7 @@ export default function SPXReportForm() {
                 name="hubSName"
                 value={formData.hubSName}
                 onChange={handleChange}
+                maxLength={200}
                 placeholder="Hướng dẫn: Vui lòng điền tối thiểu 04 ký tự tên gọi của Hub/SOC để hiện thị danh sách chọn"
               />
             </div>
@@ -456,6 +456,54 @@ export default function SPXReportForm() {
               />
             </div>
 
+            {/* MÔ TẢ SỰ VỤ */}
+            <div className="spx-form-group">
+              <label
+                htmlFor="incidentDescription"
+                className="spx-label required"
+              >
+                Mô tả chi tiết sự vụ
+              </label>
+
+              <Input.TextArea
+                id="incidentDescription"
+                name="incidentDescription"
+                value={formData.incidentDescription}
+                onChange={handleChange}
+                rows={6}
+                maxLength={5000}
+                showCount
+                placeholder="Nêu rõ thời gian, địa điểm, các cá nhân liên quan (họ tên, email, bộ phận) và diễn biến sự vụ."
+              />
+            </div>
+
+            {/* ĐÍNH KÈM BẰNG CHỨNG */}
+            <div className="spx-form-group">
+              <label className="spx-label">
+                Đính kèm bằng chứng (tối đa {MAX_FILES} tệp, mỗi tệp ≤ 10MB)
+              </label>
+
+              <Upload
+                multiple
+                maxCount={MAX_FILES}
+                fileList={fileList}
+                accept=".jpg,.jpeg,.png,.webp,.mp4,.mov,.pdf,.docx,.xlsx"
+                beforeUpload={(file) => {
+                  if (file.size > MAX_FILE_SIZE) {
+                    message.error(`"${file.name}" vượt quá 10MB.`);
+                    return Upload.LIST_IGNORE;
+                  }
+                  return false; // không tự upload, sẽ tải lên khi bấm Gửi
+                }}
+                onChange={({ fileList: newList }) => setFileList(newList)}
+              >
+                <Button htmlType="button">Chọn tệp bằng chứng</Button>
+              </Upload>
+              <p className="spx-subtext">
+                Hỗ trợ ảnh (JPG, PNG, WEBP), video (MP4, MOV), PDF, Word, Excel.
+              </p>
+            </div>
+
             <h2 className="spx-form-header">THÔNG TIN LIÊN HỆ</h2>
 
             <div className="spx-form-group">
@@ -470,7 +518,8 @@ export default function SPXReportForm() {
                 type="text"
                 value={formData.contactInfo}
                 onChange={handleChange}
-                placeholder="Hướng dẫn: Vui lòng điền tối thiểu 04 ký tự tên gọi của Hub/SOC"
+                maxLength={300}
+                placeholder="Họ tên, số điện thoại hoặc email (không bắt buộc)"
               />
               <p className="spx-subtext">
                 Tất cả thông tin bạn cung cấp đều được bảo vệ một cách nghiêm
@@ -537,6 +586,7 @@ export default function SPXReportForm() {
                 size="large"
                 className="btn-reset"
                 onClick={handleReset}
+                disabled={submitting}
               >
                 Xoá thông tin đã điền
               </Button>
@@ -546,6 +596,7 @@ export default function SPXReportForm() {
                 htmlType="submit"
                 size="large"
                 className="btn-submit"
+                loading={submitting}
               >
                 Gửi tố cáo
               </Button>
