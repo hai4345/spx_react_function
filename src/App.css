@@ -1,7 +1,7 @@
 /* =========================================
    1. THIẾT LẬP NỀN TOÀN TRANG
 ========================================= */
-
+/* 
 * {
   box-sizing: border-box;
 }
@@ -24,22 +24,23 @@ body {
 
 body {
   overflow-x: hidden;
-}
+} */
 
 /* =========================================
    2. KHUNG TRANG
 ========================================= */
 
-.spx-page-bg {
+/* .spx-page-bg {
   width: 100%;
   min-height: 100vh;
   margin: 0;
   padding: 0;
   background-color: #f1f1f1;
-}
+} */
 
 /* SỬA: JSX dùng "spx-container" nhưng CSS cũ chỉ có ".spx-tile-imge" */
-.spx-container {
+
+/* .spx-container {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
@@ -58,13 +59,13 @@ body {
   margin: 0;
   padding: 0;
   background-color: #fff;
-}
+} */
 
 /* =========================================
    3. BANNER (960 x 220px)
 ========================================= */
 
-.banner-card {
+/* .banner-card {
   width: 100%;
   margin: 0;
   padding: 0;
@@ -82,13 +83,13 @@ body {
   padding: 0;
   border: 0;
   border-radius: 0;
-}
+} */
 
 /* =========================================
    4. KHUNG NỘI DUNG HƯỚNG DẪN
 ========================================= */
 
-.content-card {
+/* .content-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -100,13 +101,13 @@ body {
   padding: 10px 60px 20px 80px;
 
   background-color: #fff;
-}
+} */
 
 /* =========================================
    5. TIÊU ĐỀ CHÍNH
 ========================================= */
 
-.spx-main-title {
+/* .spx-main-title {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,13 +126,13 @@ body {
   text-align: center;
 
   overflow-wrap: break-word;
-}
+} */
 
 /* =========================================
    6. VĂN BẢN HƯỚNG DẪN
 ========================================= */
 
-.spx-text,
+/* .spx-text,
 .spx-section-heading,
 .spx-list li,
 .spx-principles p {
@@ -140,10 +141,11 @@ body {
   font-size: 14.67px;
   line-height: 1.30;
   overflow-wrap: break-word;
-}
+} */
 
 /* SỬA: thiếu dấu chấm "." */
-.spx-text {
+
+/* .spx-text {
   margin: 0 0 1em;
   padding: 0;
   font-weight: 400;
@@ -162,13 +164,13 @@ body {
 .text-red {
   color: #ff0000;
   font-weight: 700;
-}
+} */
 
 /* =========================================
    7. BẢNG HƯỚNG DẪN
 ========================================= */
 
-.spx-table {
+/* .spx-table {
   width: 624px;
   max-width: 100%;
   margin: 0;
@@ -214,13 +216,13 @@ body {
   color: #1155cc;
   text-decoration: underline;
   overflow-wrap: anywhere;
-}
+} */
 
 /* =========================================
    8. DANH SÁCH VÀ NGUYÊN TẮC CHUNG
 ========================================= */
 
-.spx-list {
+/* .spx-list {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -248,12 +250,12 @@ body {
   padding: 0;
   border: 0;
   border-top: 1px solid #dfdfdf;
-}
+} */
 
 /* =========================================
    9. TIÊU ĐỀ BIỂU MẪU
 ========================================= */
-
+/* 
 .spx-form-header {
   width: 100%;
   margin: 30px 0 10px;
@@ -283,13 +285,13 @@ body {
   font-weight: 400;
   line-height: 1.4;
   text-align: center;
-}
+} */
 
 /* =========================================
    10. FORM NHẬP LIỆU (bản cũ thiếu toàn bộ phần này)
 ========================================= */
 
-.spx-form-container {
+/* .spx-form-container {
   width: 100%;
   padding: 0 0 40px;
   background-color: #fff;
@@ -360,13 +362,13 @@ body {
   color: #666;
   font-size: 13px;
   line-height: 1.5;
-}
+} */
 
 /* =========================================
    11. CHÍNH SÁCH BẢO MẬT
 ========================================= */
 
-.spx-policy-header {
+/* .spx-policy-header {
   width: 100%;
   padding: 0 90px;
   color: #000;
@@ -400,13 +402,13 @@ body {
   margin: 8px 0 0;
   color: #d93025;
   font-size: 13px;
-}
+} */
 
 /* =========================================
    12. NÚT THAO TÁC
 ========================================= */
 
- .spx-action-buttons {
+ /* .spx-action-buttons {
   display: flex;
   justify-content: space-between;
   padding: 10px 60px 0;
@@ -437,13 +439,13 @@ body {
 
 .btn-submit:hover {
   background-color: #d73f21;
-}
+} */
 
 /* =========================================
    13. RESPONSIVE
 ========================================= */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .content-card {
     padding: 16px;
   }
@@ -472,11 +474,6 @@ body {
     font-size: 12px;
     line-height: 1.35;
   }
-
-  /* .spx-form-header {
-    margin: 36px 0 10px;
-    font-size: 21px;
-  } */
 
   .spx-form-group {
     padding: 20px 16px 0;
@@ -507,4 +504,761 @@ body {
   .spx-btn {
     width: 100%;
   }
+} */
+
+/* =========================================
+   1. THIẾT LẬP NỀN TOÀN TRANG
+========================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: #f1f1f1;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #f1f1f1;
+  color: #000;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* =========================================
+   2. KHUNG TRANG
+========================================= */
+
+.spx-page-bg {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+}
+
+.spx-container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.spx-body {
+  width: 100%;
+  background-color: #fff;
+}
+
+.spx-card {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+/* =========================================
+   3. BANNER
+========================================= */
+
+.banner-card {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+.spx-banner-img {
+  display: block;
+  width: 100%;
+  max-width: 960px;
+  height: auto;
+  aspect-ratio: 48 / 11;
+  object-fit: contain;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+/* =========================================
+   4. KHUNG NỘI DUNG
+========================================= */
+
+.content-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 10px 60px 20px 80px;
+
+  background-color: #fff;
+}
+
+/* =========================================
+   5. TIÊU ĐỀ CHÍNH
+========================================= */
+
+.spx-main-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 50px;
+  margin: 0 0 10px;
+  padding: 0;
+
+  color: #000;
+  font-family: Shopee, Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.35;
+  text-align: center;
+
+  overflow-wrap: break-word;
+}
+
+/* =========================================
+   6. VĂN BẢN HƯỚNG DẪN
+========================================= */
+
+.spx-text,
+.spx-section-heading,
+.spx-list li,
+.spx-principles p {
+  color: #000;
+  font-family: Arial, sans-serif;
+  font-size: 14.67px;
+  line-height: 1.30;
+  overflow-wrap: break-word;
+}
+
+.spx-text {
+  margin: 0 0 1em;
+  padding: 0;
+  font-weight: 400;
+}
+
+.spx-section-heading {
+  margin: 1.38em 0 0.5em;
+  padding: 0;
+  font-weight: 700;
+}
+
+.spx-section-heading--wide {
+  margin-top: 2.76em;
+}
+
+.text-red {
+  color: #ff0000;
+  font-weight: 700;
+}
+
+/* =========================================
+   7. BẢNG HƯỚNG DẪN
+========================================= */
+
+.spx-table {
+  width: 624px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+
+  background-color: #fff;
+  color: #000;
+  font-family: Arial, sans-serif;
+  font-size: 14.67px;
+  line-height: 1.38;
+}
+
+.spx-table th,
+.spx-table td {
+  padding: 6.67px;
+  border: 1px solid #000;
+
+  font-family: Arial, sans-serif;
+  font-size: 14.67px;
+  line-height: 1.38;
+  font-weight: 400;
+  text-align: left;
+  vertical-align: top;
+
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.spx-table th {
+  background-color: #434343;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.spx-table a {
+  color: #1155cc;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   8. DANH SÁCH VÀ NGUYÊN TẮC
+========================================= */
+
+.spx-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.spx-list li {
+  font-weight: 400;
+}
+
+.spx-principles {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.spx-principles p {
+  margin: 0 0 8px;
+  padding: 0;
+}
+
+.spx-divider {
+  width: 100%;
+  height: 1px;
+  margin: 10px 0 5px;
+  padding: 0;
+  border: 0;
+  border-top: 1px solid #dfdfdf;
+}
+
+/* =========================================
+   9. TIÊU ĐỀ BIỂU MẪU
+========================================= */
+
+.spx-form-header,
+.spx-form-header2,
+.spx-form-header3 {
+  width: 100%;
+  margin: 30px 0 10px;
+  padding: 0;
+  color: #000;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.spx-form-header2,
+.spx-form-header3 {
+  margin-top: 40px;
+}
+
+/* =========================================
+   10. FORM NHẬP LIỆU
+========================================= */
+
+.spx-form-container {
+  width: 100%;
+  min-width: 0;
+  padding: 0 0 40px;
+  background-color: #fff;
+}
+
+.spx-container form {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+.spx-form-group {
+  width: 100%;
+  min-width: 0;
+  margin: 0 0 16px;
+  padding: 30px 90px 0;
+
+  color: #000;
+  font-size: 14px;
+}
+
+.spx-label {
+  display: block;
+  margin: 0 0 10px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.spx-label.required::after {
+  content: " *";
+  color: #ee4d2d;
+}
+
+.policy-intro {
+  font-weight: 400;
+}
+
+.spx-input {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: 40px;
+  padding: 8px 12px;
+
+  background-color: #fff;
+  color: #000;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+
+  border: 1px solid #c4c4c4;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.spx-input:focus {
+  border-color: #ee4d2d;
+  box-shadow: 0 0 0 2px rgba(238, 77, 45, 0.15);
+}
+
+.spx-input::placeholder {
+  color: #9a9a9a;
+}
+
+.spx-subtext {
+  margin: 12px 0 0;
+  color: #666;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Ant Design Input và Select */
+
+.spx-form-group .ant-input,
+.spx-form-group .ant-select {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.spx-form-group .ant-select-selector {
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================
+   11. CHÍNH SÁCH BẢO MẬT
+========================================= */
+
+.spx-policy-header {
+  width: 100%;
+  padding: 0 90px;
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.spx-checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+}
+
+.spx-checkbox {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  cursor: pointer;
+  accent-color: #ee4d2d;
+}
+
+.spx-checkbox-label {
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.spx-policy-error {
+  margin: 8px 0 0;
+  color: #d93025;
+  font-size: 13px;
+}
+
+/* =========================================
+   12. NÚT THAO TÁC
+========================================= */
+
+.spx-action-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 20px;
+
+  width: 100%;
+  min-width: 0;
+  padding: 10px 60px 0;
+}
+
+.spx-action-buttons .ant-btn {
+  min-width: 200px;
+  min-height: 40px;
+  border-radius: 15px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.spx-btn {
+  max-width: 100%;
+}
+
+.spx-action-buttons .btn-reset {
+  border-color: #ee4d2d;
+  color: #ee4d2d;
+}
+
+.spx-action-buttons .btn-submit {
+  background-color: #ee4d2d;
+  color: #fff;
+}
+
+.spx-action-buttons .btn-submit.ant-btn-primary:hover {
+  background-color: #d73211;
+  border-color: #d73211;
+}
+
+.spx-btn:hover {
+  transition: all 0.2s ease;
+}
+
+/* =========================================
+   13. RESPONSIVE TABLET
+========================================= */
+
+@media screen and (max-width: 768px) {
+
+  .spx-container {
+    max-width: 100%;
+  }
+
+  .content-card {
+    padding: 20px 24px;
+  }
+
+  .spx-main-title {
+    font-size: 23px;
+    line-height: 1.4;
+  }
+
+  .spx-text,
+  .spx-section-heading,
+  .spx-list li,
+  .spx-principles p {
+    font-size: 14px;
+  }
+
+  .spx-table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .spx-table th,
+  .spx-table td {
+    padding: 5px;
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .spx-form-group {
+    padding: 24px 30px 0;
+  }
+
+  .spx-policy-header {
+    padding: 0 30px;
+  }
+
+  .spx-action-buttons {
+    padding: 16px 30px 0;
+    gap: 16px;
+  }
+
+  .spx-action-buttons .ant-btn {
+    min-width: 0;
+    flex: 1 1 0;
+  }
+}
+
+/* =========================================
+   14. RESPONSIVE ĐIỆN THOẠI
+========================================= */
+
+@media screen and (max-width: 576px) {
+
+  .spx-page-bg {
+    padding: 0;
+  }
+
+  .spx-container {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+  }
+
+  .content-card {
+    padding: 16px;
+  }
+
+  .spx-main-title {
+    min-height: auto;
+    margin-bottom: 14px;
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  .spx-text,
+  .spx-section-heading,
+  .spx-list li,
+  .spx-principles p {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .spx-section-heading {
+    margin-top: 22px;
+  }
+
+  .spx-section-heading--wide {
+    margin-top: 28px;
+  }
+
+  /* Bảng tự điều chỉnh theo màn hình */
+
+  .spx-table {
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .spx-table th,
+  .spx-table td {
+    padding: 6px 4px;
+    font-size: 11px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  /* Tiêu đề form */
+
+  .spx-form-header,
+  .spx-form-header2,
+  .spx-form-header3 {
+    margin: 26px 0 12px;
+    font-size: 19px;
+    line-height: 1.4;
+  }
+
+  /* Form */
+
+  .spx-form-group {
+    padding: 20px 16px 0;
+    margin-bottom: 14px;
+  }
+
+  .spx-label {
+    font-size: 14px;
+  }
+
+  .spx-input {
+    height: 42px;
+    font-size: 16px;
+  }
+
+  .spx-form-group .ant-input {
+    min-height: 40px;
+    font-size: 16px;
+  }
+
+  .spx-form-group .ant-select {
+    font-size: 16px;
+  }
+
+  .spx-form-group .ant-select-selector {
+    min-height: 40px;
+  }
+
+  /* Chính sách */
+
+  .spx-policy-header {
+    padding: 0 16px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .spx-checkbox-container {
+    gap: 9px;
+  }
+
+  .spx-checkbox-label {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* FIX HAI NÚT BỊ DÍNH NHAU */
+
+  .spx-action-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    flex-wrap: nowrap !important;
+
+    width: 100%;
+    gap: 14px !important;
+
+    margin: 0;
+    padding: 20px 16px 28px !important;
+  }
+
+  .spx-action-buttons .ant-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0 !important;
+    min-height: 46px;
+
+    flex: none !important;
+    margin: 0 !important;
+    padding: 10px 16px;
+
+    white-space: normal;
+    line-height: 1.4;
+  }
+}
+
+/* =========================================
+   15. ĐIỆN THOẠI MÀN HÌNH NHỎ
+========================================= */
+
+@media screen and (max-width: 380px) {
+
+  .content-card {
+    padding: 12px;
+  }
+
+  .spx-main-title {
+    font-size: 19px;
+  }
+
+  .spx-table th,
+  .spx-table td {
+    padding: 4px 3px;
+    font-size: 10.5px;
+  }
+
+  .spx-form-group {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .spx-action-buttons {
+    padding-right: 12px !important;
+    padding-left: 12px !important;
+    gap: 12px !important;
+  }
+
+  .spx-action-buttons .ant-btn {
+    min-height: 44px;
+    font-size: 13px;
+  }
+}
+
+/* =========================================
+   16. ĐIỆN THOẠI RẤT NHỎ
+========================================= */
+
+@media screen and (max-width: 320px) {
+
+  .spx-main-title {
+    font-size: 17px;
+  }
+
+  .spx-form-group {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .spx-action-buttons {
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+  }
+}
+
+/* =========================================
+   17. MÀN HÌNH MÁY TÍNH LỚN
+========================================= */
+
+@media screen and (min-width: 1200px) {
+
+  .spx-container {
+    max-width: 960px;
+  }
+
 }
